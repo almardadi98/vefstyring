@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="is">
+
+<!-- *Kóði lánaður frá netinu frá mörgum stöðum og breyttur eftir þörf* -->
+
+<head>
+    <title>RGB stýring</title>
+    <meta charset="UTF-8">
+    <link rel=stylesheet type="text/css" href="static/style.css">
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/scripts.js"></script>
+</head>
+
+<body>
+
+<div class="pagedude">
+
+<header>
+<nav>
+        <ul>
+            <li><a href="website.html">Heim</a></li>
+            <li><a href="about.html">Um síðuna</a></li>
+        </ul>
+</nav>
+</header>
+
+
+<h2 class="center unselectable">RGB LED stýring</h2>
+
+<canvas id="myCanvas">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br>
+
+<br>
+
+<div>
+<table id="rgbTable">
+    <tr>
+      <th id="tableR">R</th>
+      <th id="tableG">G</th> 
+      <th id="tableB">B</th>
+      <th><img src="static/bright.png" height="30" width="30"></th>
+    </tr>
+    <tr>
+      <td id="redT">127</td>
+      <td id="greenT">127</td> 
+      <td id="blueT">127</td>
+      <td id="brightT">100%</td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+
+<!--Það er slæmt að þurfa js kóða til þess að animate-a sleðana. (laga) eða hvað??-->
+<div class="slidecontainer">
+    <input oninput="drawCanvas()" type="range" min="0" max="255" value="127" class="slider" id="red_slider">
+    <div class="spacer"></div>
+    <input oninput="drawCanvas()" type="range" min="0" max="255" value="127" class="slider" id="green_slider">
+    <div class="spacer"></div>
+    <input oninput="drawCanvas()" type="range" min="0" max="255" value="127" class="slider" id="blue_slider">
+    <div class="spacer"></div>
+    <input oninput="drawCanvas()" type="range" min="0" max="100" value="100" class="slider" id="brightness_slider">
+</div>
+
+<div class="centerbuttons">
+    <div class="w3-container">
+        <button type="button" onclick="sendToPython()">Senda</button>
+        <button type="button" onclick="move()">Af handahófi</button>
+        <button type="button" onclick="resetColor()">Endurstilla</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--Teikna striga til þess að fá sjálfgefin gildi lituð.-->
+
+
+</div>
+
+<footer class="unselectable"><b>Almar Daði Björnsson</b></footer>
+
+</body>
+<script>drawCanvas()</script>
+</html>
