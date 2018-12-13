@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request
 import time
-import os
-from subprocess import Popen, PIPE
-import signal
-import time
+import threading
 
+def worker():
+        print('TEest')
 
-
-
+thread_list = []
+for i in range(4):
+        thread = threading.Thread(target=worker)
+        thread_list.append(thread)
+        thread.start()
 
 def updateRGB(hexGildi):
         listiRGB = []
@@ -18,14 +20,8 @@ def updateRGB(hexGildi):
 
             for word in words:
                 listiRGB.append(word)
-            #þarf að finna góða leið til þess að uppfæra litina í c forritinu live
-            #os.system('./RGB_from_cli.py' + ' ' + listiRGB[0] + ' ' + listiRGB[1] + ' ' + listiRGB[2])
-            litir = Popen(['../styring/str'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-
-            drengur = (listiRGB[0] + '\n' + listiRGB[1] + '\n' + listiRGB[2] + '\n')
-            stdout, stderr = litir.communicate(input=drengur.encode())
-            litir.kill()
-            print(stdout)
+            listiRGB = list(map(int, listiRGB))
+            print(listiRGB)
             listiRGB = []
 
 app = Flask(__name__)

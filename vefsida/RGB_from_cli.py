@@ -11,11 +11,6 @@ import argparse
 import time
 import RPi.GPIO as GPIO
 
-# Get RGB colors from command line arguments.
-parser = argparse.ArgumentParser(description = 'Light up the world!')
-parser.add_argument('rgb', metavar='0-255', type=int, nargs=3,
-                   help='Red, Green, and Blue color values (0-255).')
-args = parser.parse_args()
 
 # LED pin mapping.
 red =  17
@@ -46,7 +41,6 @@ def setColor(rgb = []):
     GREEN.ChangeDutyCycle(100-rgb[1])
     BLUE.ChangeDutyCycle(100-rgb[2])
 
-setColor(args.rgb)
 time.sleep(2)
 
 GPIO.cleanup()
