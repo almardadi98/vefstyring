@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request
 import time
 import os
-import subprocess
+from subprocess import Popen, PIPE
 import signal
 import time
+
+
+
 
 
 def updateRGB(hexGildi):
@@ -16,8 +19,13 @@ def updateRGB(hexGildi):
             for word in words:
                 listiRGB.append(word)
             #þarf að finna góða leið til þess að uppfæra litina í c forritinu live
-            os.system('./RGB_from_cli.py' + ' ' + listiRGB[0] + ' ' + listiRGB[1] + ' ' + listiRGB[2])
-            #litir = subprocess.Popen("./colours " + listiRGB[0] + ' ' + listiRGB[1] + ' ' + listiRGB[2], shell=True, preexec_fn=os.setsid)
+            #os.system('./RGB_from_cli.py' + ' ' + listiRGB[0] + ' ' + listiRGB[1] + ' ' + listiRGB[2])
+            litir = Popen(['../styring/str'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+
+            drengur = (listiRGB[0] + '\n' + listiRGB[1] + '\n' + listiRGB[2] + '\n')
+            stdout, stderr = litir.communicate(input=drengur.encode())
+            litir.kill()
+            print(stdout)
             listiRGB = []
 
 app = Flask(__name__)

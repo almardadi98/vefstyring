@@ -97,6 +97,7 @@ function drawCanvas(){
     console.log('Gildi ', red, green, blue, (brightness * 100) + '%')
     ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
     ctx.fill();
+    sendToPython();
 }
 
 /*

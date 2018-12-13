@@ -22,10 +22,10 @@ class styring{
 		styring()
 		{
 			std::cout << "Initialize PWM..." << std::endl;
-                // 0 er upphafsgildi, 100 er range
-            softPwmCreate(LedPinRed,   0, 100);
-            softPwmCreate(LedPinGreen, 0, 100);
-            softPwmCreate(LedPinBlue,  0, 100);
+                // 100 (HIGH = slökkt á ljósum) er upphafsgildi, 100 er range (0-100)
+            softPwmCreate(LedPinRed,   100, 100);
+            softPwmCreate(LedPinGreen, 100, 100);
+            softPwmCreate(LedPinBlue,  100, 100);
 		}
         void getInput()
         {
@@ -42,11 +42,8 @@ class styring{
             r = map(r, 0, 255, 0, 100);
             g = map(g, 0, 255, 0, 100);
             b = map(b, 0, 255, 0, 100);    
-            //printf(" R = %d", r);
-            //printf(" G = %d", g);
-            //printf(" B = %d", b);
 
-            softPwmWrite(LedPinRed,   100 - r);  //change duty cycle
+            softPwmWrite(LedPinRed,   100 - r);  //Breyta PWM hlutfalli
             softPwmWrite(LedPinGreen, 100 - g);
             softPwmWrite(LedPinBlue,  100 - b);
         }
